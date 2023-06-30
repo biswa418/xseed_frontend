@@ -33,10 +33,10 @@ export const setInLocalStorage = (key, value) => {
     localStorage.setItem(key, strValue);
 }
 
-export const removeFromLocalStorage = (key) => {
+export const removeFromLocalStorage = async (key) => {
     if (!key) {
         return console.error('No key given to remove');
     }
 
-    localStorage.removeItem(key);
+    await localStorage.removeItem(key);
 }

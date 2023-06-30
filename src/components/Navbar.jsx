@@ -1,13 +1,18 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { IoMenuOutline } from 'react-icons/io5'
 import { GrClose } from 'react-icons/gr';
 import { subjects } from '../utils/constants'
 import { Fade, Slide } from 'react-awesome-reveal'
 import { Toaster } from 'react-hot-toast';
+import { useAuth } from '../hooks';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
     const [openMenu, setOpenmenu] = useState(false);
     const [openSubMenu, setSubOpenmenu] = useState(false);
+    const [signedIn, setsignIn] = useState(false);
+    const navigate = useNavigate();
+    const auth = useAuth();
 
     function handleChangeMenu() {
         setOpenmenu(!openMenu);
@@ -23,8 +28,24 @@ const Navbar = () => {
         parentElement.classList.toggle('animateHeight');
     }
 
-    return (
+    async function handleLogout() {
+        auth.logout();
+        setsignIn(false);
 
+        setTimeout(() => {
+            navigate('/login');
+        }, 100);
+    }
+
+    useEffect(() => {
+        if (auth.user) {
+            setsignIn(true);
+        } else {
+            setsignIn(false);
+        }
+    }, [auth.user])
+
+    return (
         <nav className='bg-gray-100 h-16 px-4 flex justify-between items-center'>
             <Toaster
                 position="top-right"
@@ -46,8 +67,8 @@ const Navbar = () => {
 
                     {
                         openSubMenu &&
-                        <Fade triggerOnce className='side_menu relative z-20'>
-                            <div className='flex flex-col items-center  bg-opacity-70 bg-slate-300 backdrop-blur-lg rounded-lg text-base absolute -right-40 top-10 z-50 w-[92vw] min-h-[50vh] pb-8 h-max'>
+                        <Fade triggerOnce className='side_menu z-20'>
+                            <div className='flex flex-col items-center bg-opacity-70 bg-slate-300 backdrop-blur-lg rounded-lg text-base absolute right-10 top-16 z-50 w-[92vw] min-h-[50vh] pb-8 h-max'>
                                 <ul className='w-3/4 mt-4'>
                                     {
                                         subjects.map((sub) => {
@@ -81,8 +102,23 @@ const Navbar = () => {
                         </Fade>
                     }
                 </>
-                <a href='/login' className='mx-3 text-blue-600'>Sign in</a>
-                <a href='/register' className='mx-3 px-3 py-2 bg-blue-600 text-white rounded-full'>Sign up</a>
+                {
+                    !signedIn &&
+                    <>
+                        <a href='/login' className='mx-3 text-blue-600'>Sign in</a>
+                        <a href='/register' className='mx-3 px-3 py-2 bg-blue-600 text-white rounded-full'>Sign up</a>
+                    </>
+                }
+                {
+                    signedIn &&
+                    <>
+                        <div className='uppercase flex justify-center items-center mr-5'>
+                            <img className='h-12 ml-5 mr-2' src='./man.png' alt='display_pic' />
+                            {auth.user?.name}
+                        </div>
+                        <a className='mx-1 whitespace-nowrap cursor-pointer' onClick={(e) => { handleLogout() }}>Sign Out</a>
+                    </>
+                }
             </div>
 
             <div className='md:hidden flex items-center'>
@@ -99,9 +135,21 @@ const Navbar = () => {
                             <Fade triggerOnce className='side_menu relative z-20'>
                                 <div className='flex flex-col items-center bg-slate-300 backdrop-blur-lg rounded-lg text-base absolute right-0 top-5 z-50 w-[92vw] min-h-[50vh] pb-8 h-max'>
                                     <div className='w-3/4 bg-slate-500 text-white rounded-full flex justify-around p-2 mt-4'>
-                                        <a href='/login' className='mx-1 whitespace-nowrap'>Sign in</a>
-                                        |
-                                        <a href='/register' className='mx-1 whitespace-nowrap'>Sign up</a>
+                                        {
+                                            !signedIn &&
+                                            <>
+                                                <a href='/login' className='mx-1 whitespace-nowrap'>Sign in</a>
+                                                |
+                                                <a href='/register' className='mx-1 whitespace-nowrap'>Sign up</a>
+                                            </>
+                                        }
+
+                                        {
+                                            signedIn &&
+                                            <>
+                                                <a className='mx-1 whitespace-nowrap cursor-pointer' onClick={(e) => auth.logout()}>Sign Out</a>
+                                            </>
+                                        }
                                     </div>
 
                                     <ul className='w-3/4 mt-4'>

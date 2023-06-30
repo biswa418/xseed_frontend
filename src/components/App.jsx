@@ -5,16 +5,14 @@ import Footer from './Footer';
 import { useAuth } from '../hooks';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import Loader from './Loader';
 
 function App() {
   const auth = useAuth();
-  const navigate = useNavigate();
 
-  useEffect(() => {
-    if (auth.user) {
-      navigate('/');
-    }
-  }, [auth.user])
+  if (auth.loading) {
+    return <Loader />
+  }
 
   return (
     <>
@@ -23,8 +21,8 @@ function App() {
         <Route path='/' element={<Home posts={[]} />} />
         {!auth.user && <Route path='/login' element={<Login />} />}
         {!auth.user && <Route path='/register' element={<Signup />} />}
-        {/* {auth.user && <Route path='/login' element={<Home />} />}
-          {auth.user && <Route path='/register' element={<Home />} />} */}
+        {auth.user && <Route path='/login' element={<Home />} />}
+        {auth.user && <Route path='/register' element={<Home />} />}
         <Route path='/:name/:sub' element={<Home />} />
         <Route path='*' element={<Page404 />} />
       </Routes>

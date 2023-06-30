@@ -23,6 +23,8 @@ export const useProvideAuth = () => {
             const decodedUser = await jwt_decode(token);
             setUser(decodedUser);
         }
+
+        setLoading(false);
     }
 
     const login = async (email, password) => {
@@ -59,8 +61,8 @@ export const useProvideAuth = () => {
         }
     }
 
-    const logout = () => {
-        setUser({ currUser: null, loading: true });
+    const logout = async () => {
+        setUser(null);
         removeFromLocalStorage(LOCALSTORAGE_TOKEN_KEY);
     }
 
