@@ -54,9 +54,16 @@ async function login(name, password) {
     });
 }
 
+async function signup(name, email, password) {
+    return await customFetch(API_URLS.signup(), {
+        method: 'POST',
+        body: { name, email, password }
+    });
+}
+
 
 
 export {
     login,
-
+    signup
 }
