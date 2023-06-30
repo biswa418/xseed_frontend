@@ -4,16 +4,25 @@ import { Loader } from '../components'
 import toast from 'react-hot-toast';
 import { login } from '../api';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../hooks';
 
 const Login = () => {
     const [loading, setLoading] = useState(true);
     const [submit, setSubmit] = useState(false);
     const navigate = useNavigate();
     const [details, setDetails] = useState({ 'name': '', 'password': '' });
+    const auth = useAuth();
+
+    // console.log(import.meta.env.VITE_JWT_SECRET);
 
     useEffect(() => {
+        if (auth.user) {
+            navigate('/');
+        }
+
+        // if (!auth.loading)
         setLoading(false);
-    }, []);
+    }, [auth.user]);
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -31,7 +40,7 @@ const Login = () => {
         const loadId = toast.loading('Loggin in..');
 
         //helper function call for API
-        const response = await login(name, password);
+        const response = await auth.login(name, password);
 
         if (response.success) {
             toast.dismiss(loadId);

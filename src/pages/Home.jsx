@@ -4,6 +4,7 @@ import { subjects } from '../utils'
 import Page404 from './Page404';
 import Coming from './Coming';
 import { Loader } from '../components';
+import { useAuth } from '../hooks';
 
 const Math = React.lazy(() => import("../components/Math"));
 
@@ -11,6 +12,7 @@ const Home = () => {
     const [loading, setLoading] = useState(true);
     const { name, sub } = useParams();
     const [returnPage, setreturnPage] = useState(2);
+    const auth = useAuth();
 
     useEffect(() => {
         let found = subjects.filter((eachTopic) => {

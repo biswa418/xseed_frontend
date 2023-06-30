@@ -1,4 +1,5 @@
 export * from './constants';
+export * from './api';
 
 //get and set localstorage with user --
 export const getFromLocalStorage = (key) => {
@@ -22,7 +23,6 @@ export const getFormBody = (params) => {
     return formBody.join('&');
 }
 
-
 export const setInLocalStorage = (key, value) => {
     if (!key || !value) {
         return console.error('Error in key or value');
@@ -32,7 +32,6 @@ export const setInLocalStorage = (key, value) => {
 
     localStorage.setItem(key, strValue);
 }
-
 
 export const removeFromLocalStorage = (key) => {
     if (!key) {
