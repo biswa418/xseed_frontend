@@ -3,6 +3,7 @@ import { IoMenuOutline } from 'react-icons/io5'
 import { GrClose } from 'react-icons/gr';
 import { subjects } from '../utils/constants'
 import { Fade, Slide } from 'react-awesome-reveal'
+import { Toaster } from 'react-hot-toast';
 
 const Navbar = () => {
     const [openMenu, setOpenmenu] = useState(false);
@@ -23,7 +24,13 @@ const Navbar = () => {
     }
 
     return (
+
         <nav className='bg-gray-100 h-16 px-4 flex justify-between items-center'>
+            <Toaster
+                position="top-right"
+                reverseOrder={false}
+            />
+
             <a href='/'>
                 <div className='logo flex justify-center items-center'>
                     <img src='../logo.png' className='w-12' alt='logo' />
@@ -55,8 +62,8 @@ const Navbar = () => {
                                                             {
                                                                 sub.sub.map((eachSub, id) => {
                                                                     return (
-                                                                        <a href={`/${sub.name}/${eachSub}`}>
-                                                                            <li key={id} className='my-1 text-slate-400 hover:text-blue-600 text-sm'>
+                                                                        <a key={id} href={`/${sub.name}/${eachSub}`}>
+                                                                            <li className='my-1 text-slate-400 hover:text-blue-600 text-sm'>
                                                                                 {eachSub}
                                                                             </li>
                                                                         </a>
