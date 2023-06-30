@@ -3,10 +3,12 @@ import '../assets/css/form.css'
 import { Loader } from '../components'
 import toast from 'react-hot-toast';
 import { login } from '../api';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const [loading, setLoading] = useState(true);
     const [submit, setSubmit] = useState(false);
+    const navigate = useNavigate();
     const [details, setDetails] = useState({ 'name': '', 'password': '' });
 
     useEffect(() => {
@@ -34,6 +36,7 @@ const Login = () => {
         if (response.success) {
             toast.dismiss(loadId);
             toast.success('Successfully logged in');
+
             setTimeout(() => navigate('/'), 1000);
         } else {
             toast.error(`${response.message}`)

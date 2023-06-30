@@ -50,7 +50,7 @@ const customFetch = async (url, { body, ...customConfig }) => {
 async function login(name, password) {
     return await customFetch(API_URLS.login(), {
         method: 'POST',
-        body: { name, password }
+        body: { email: name, password }
     });
 }
 
