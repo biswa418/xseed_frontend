@@ -15,7 +15,7 @@ function App() {
           <Route path='/' element={<Home posts={[]} />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Signup />} />
-          {/* <Route path='/users/:userId' element={<UserProfile />} /> */}
+          <Route path='/:name/:sub' element={<Home />} />
           <Route path='*' element={<Page404 />} />
         </Routes>
         <Footer />
