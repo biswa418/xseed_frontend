@@ -6,6 +6,7 @@ import Coming from './Coming';
 import { Loader } from '../components';
 import { useAuth } from '../hooks';
 import Chatbot from '../components/Chatbot';
+import { BsRobot } from 'react-icons/bs';
 
 const Math = React.lazy(() => import("../components/Math"));
 
@@ -13,6 +14,7 @@ const Home = () => {
     const [loading, setLoading] = useState(true);
     const { name, sub } = useParams();
     const [returnPage, setreturnPage] = useState(2);
+    const [bot, showBot] = useState(false);
     const auth = useAuth();
 
     useEffect(() => {
@@ -61,11 +63,18 @@ const Home = () => {
                 </div>
             }>
 
-                <h1 className='text-lg font-medium min-w-max w-full text-center p-4 bg-cyan-700 text-white whitespace-nowrap md:text-3xl'>
+                <h1 className='text-lg font-medium min-w-max w-full text-center p-4 bg-gradient-to-tr from-blue-700 to-cyan-700  text-white whitespace-nowrap md:text-3xl'>
                     Chapter 4 - Addition and Subtraction
                 </h1>
+                {
+                    bot &&
+                    <Chatbot />
+                }
+
+                <button onClick={() => showBot(!bot)} className='fixed left-2 bottom-2 p-4 z-30 m-2 text-2xl bg-cyan-700 text-white rounded-full'>
+                    <BsRobot />
+                </button>
                 <Math />
-                {/* <Chatbot /> */}
             </Suspense>
         </div>
     )

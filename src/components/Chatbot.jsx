@@ -3,12 +3,6 @@ import { useState } from 'react'
 import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
 import { MainContainer, ChatContainer, MessageList, Message, MessageInput, TypingIndicator } from '@chatscope/chat-ui-kit-react';
 
-const API_KEY = "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";
-const systemMessage = {
-    "role": "system",
-    "content": "Explain things like you're talking to a 6-12 years old. You can occasionally use emojis. Answer only mathematics, science or social studies related topic. No other topics allowed."
-}
-
 const Chatbot = () => {
     const [messages, setMessages] = useState([
         {
@@ -79,8 +73,8 @@ const Chatbot = () => {
 
     return (
         <div className="Chatbot">
-            <div style={{ position: "relative", height: "400px", width: "300px" }}>
-                <MainContainer>
+            <div style={{ position: "absolute", left: "1rem", bottom: "5rem", height: "400px", width: "300px" }}>
+                <MainContainer className='rounded-lg' >
                     <ChatContainer>
                         <MessageList
                             scrollBehavior="smooth"
@@ -94,7 +88,7 @@ const Chatbot = () => {
                     </ChatContainer>
                 </MainContainer>
             </div>
-        </div>
+        </div >
     )
 }
 
