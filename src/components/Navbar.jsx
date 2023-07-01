@@ -69,7 +69,7 @@ const Navbar = () => {
                     {
                         openSubMenu &&
                         <Fade triggerOnce className='side_menu z-20'>
-                            <div className='flex flex-col items-center bg-opacity-70 bg-slate-300 backdrop-blur-lg rounded-lg max-h-[90vh] overflow-hidden overflow-y-auto text-base absolute right-10 3xl:right-96 md:right-32 top-16 z-50 w-[92vw] md:w-[80vw] 3xl:w-[60vw] min-h-[50vh] pb-8 h-max'>
+                            <div className='flex flex-col items-center bg-slate-300 rounded-lg max-h-[90vh] overflow-hidden overflow-y-auto text-base absolute right-10 3xl:right-96 md:right-32 top-16 z-50 w-[92vw] md:w-[80vw] 3xl:w-[60vw] min-h-[50vh] pb-8 h-max'>
                                 <ul className='w-3/4 my-auto'>
                                     {
                                         subjects.map((sub) => {
