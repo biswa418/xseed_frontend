@@ -69,7 +69,7 @@ const Navbar = () => {
                     {
                         openSubMenu &&
                         <Fade triggerOnce className='side_menu z-20'>
-                            <div className='flex flex-col items-center bg-opacity-70 bg-slate-300 backdrop-blur-lg rounded-lg text-base absolute right-10 3xl:right-96 top-16 z-50 w-[92vw] 3xl:w-[60vw] min-h-[50vh] pb-8 h-max'>
+                            <div className='flex flex-col items-center bg-opacity-70 bg-slate-300 backdrop-blur-lg rounded-lg max-h-[90vh] overflow-hidden overflow-y-auto text-base absolute right-10 3xl:right-96 md:right-32 top-16 z-50 w-[92vw] md:w-[80vw] 3xl:w-[60vw] min-h-[50vh] pb-8 h-max'>
                                 <ul className='w-3/4 my-auto'>
                                     {
                                         subjects.map((sub) => {
@@ -135,7 +135,7 @@ const Navbar = () => {
                             <GrClose onClick={handleChangeMenu} />
                             <Fade triggerOnce className='side_menu relative z-20'>
                                 <div className='flex flex-col items-center bg-slate-300 backdrop-blur-lg rounded-lg text-base absolute right-0 top-5 z-50 w-[92vw] min-h-[50vh] pb-8 h-max'>
-                                    <div className='w-3/4 bg-slate-500 text-white rounded-full flex justify-around p-2 mt-4'>
+                                    <div className='w-3/4 bg-slate-500 text-white rounded-full flex items-center justify-around p-2 mt-4'>
                                         {
                                             !signedIn &&
                                             <>
@@ -148,6 +148,11 @@ const Navbar = () => {
                                         {
                                             signedIn &&
                                             <>
+                                                <div className='uppercase flex justify-center items-center text-white mr-5'>
+                                                    <img className='h-12 ml-5 mr-2' src='../man.png' alt='display_pic' />
+                                                    {auth.user?.name?.split(' ')[0]}
+                                                </div>
+                                                |
                                                 <a className='mx-1 whitespace-nowrap cursor-pointer' onClick={(e) => auth.logout()}>Sign Out</a>
                                             </>
                                         }
