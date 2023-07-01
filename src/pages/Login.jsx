@@ -63,7 +63,7 @@ const Login = () => {
 
     return (
         <div className='main'>
-            <form className="form_container min-w-full md:min-w-max md:w-1/2 mb-6">
+            <form className="form_container min-w-full 3xl:min-w-max md:w-1/2 mb-6">
                 <div className="logo_container">
                     <img src='./logo.png' />
                 </div>
