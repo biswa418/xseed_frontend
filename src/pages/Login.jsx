@@ -65,7 +65,7 @@ const Login = () => {
 
     return (
         <div className='main'>
-            <form className="form_container min-w-full 3xl:min-w-max md:w-1/2 mb-6">
+            <form className="form_container min-w-full md:min-w-max 3xl:min-w-max md:w-1/2 mb-6">
                 <div className="logo_container">
                     <img src='./logo.png' />
                 </div>
@@ -103,7 +103,7 @@ const Login = () => {
 
                 <div className="separator">
                     <hr className="line" />
-                    <span className='w-3/4 min-w-max text-sm'>New to site?</span>
+                    <span className='min-w-max text-sm'>New to site?</span>
                     <hr className="line" />
                 </div>
 

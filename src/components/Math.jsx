@@ -1,24 +1,31 @@
 import React, { useEffect, useState } from 'react'
 import Loader from './Loader';
+import Quizerr from './Quizerr';
 import { getContent } from '../api';
+import { useAuth } from '../hooks'
 import { toast } from 'react-hot-toast';
 import InfiniteScroll from 'react-infinite-scroll-component'
-import { useAuth } from '../hooks';
+import Result from './Result';
 
 const Math = () => {
+    const auth = useAuth();
     const [page, setPage] = useState(0);
     const [content, setContent] = useState([]);
     const [loading, setLoading] = useState(true);
     const [end, setEnd] = useState(true);
-    const auth = useAuth();
+    const [ans, setAns] = useState([]); //actual answer from backend
+    const [currentAns, setCurrentAns] = useState([]); //user selected answers
+    const [showResults, setShowResults] = useState({ state: false, result: 0 });
 
     async function callContent(page) {
         const currentContent = await getContent(page)
 
-        console.log(currentContent.data);
-
         if (currentContent.success) {
             setContent([...content, currentContent?.data])
+
+            if (currentContent?.data?.name === 'Quiz') {
+                setAns([...ans, currentContent.data?.data?.ans]);
+            }
         } else if (currentContent.message === 'Token is required for accessing.') {
             setContent([...content, {
                 name: 'Quiz',
@@ -42,6 +49,18 @@ const Math = () => {
         setLoading(false);
     }
 
+    function checkAns() {
+        let count = 0;
+
+        currentAns.map((answer, id) => {
+            if (answer == ans[id]) {
+                count++
+            }
+        })
+
+        setShowResults({ state: true, result: (count / (ans.length)) * 100 });
+    }
+
     useEffect(() => {
         callContent(page);
     }, [])
@@ -54,16 +73,34 @@ const Math = () => {
         )
     }
 
+    if (showResults.state) {
+        return (
+            <div className='main'>
+                <Result mark={showResults.result} back={setShowResults} result={showResults} />
+            </div>
+        )
+    }
+
     return (
         <div className='w-full min-h-full max-w-[90vw] md:max-w-[65vw] 3xl:max-w-[50vw]'>
             <InfiniteScroll
                 dataLength={content.length}
                 next={() => callContent(page)}
                 hasMore={end}
-                loader={<Loader />}
+                loader={<div className='w-full py-2 min-h-max flex justify-center overflow-y-hidden'>
+                    <Loader />
+                </div>
+                }
                 endMessage={
-                    <p style={{ textAlign: 'center' }}>
+                    <p className='flex flex-col mt-5' style={{ textAlign: 'center' }}>
                         <b>Yay! You have reached the end.</b>
+
+                        {
+                            auth.user &&
+                            <button className='p-3 px-4 my-5 bg-cyan-800 text-white rounded-lg' onClick={checkAns}>
+                                Evaluate the quiz!
+                            </button>
+                        }
                     </p>
                 }
                 className='mt-6'
@@ -73,6 +110,7 @@ const Math = () => {
                         <div key={index}>
                             {
                                 !chapter?.continue &&
+                                chapter?.name !== 'Quiz' &&
                                 <>
                                     <h2 className='text-xl tracking-wide my-2 md:my-6 md:text-3xl font-bold text-cyan-700'>
                                         {chapter?.name}
@@ -126,6 +164,14 @@ const Math = () => {
                                         })
                                     }
                                     < hr />
+                                </>
+                            }
+
+                            {
+                                !chapter?.continue &&
+                                chapter?.name === 'Quiz' &&
+                                <>
+                                    <Quizerr chapter={chapter} setans={setCurrentAns} answers={currentAns} />
                                 </>
                             }
 
