@@ -20,7 +20,6 @@ const Login = () => {
             navigate('/');
         }
 
-        // if (!auth.loading)
         setLoading(false);
     }, [auth.user]);
 

@@ -18,7 +18,7 @@ function App() {
     <>
       <Navbar />
       <Routes>
-        <Route path='/' element={<Home posts={[]} />} />
+        <Route path='/' element={<Home />} />
         {!auth.user && <Route path='/login' element={<Login />} />}
         {!auth.user && <Route path='/register' element={<Signup />} />}
         {auth.user && <Route path='/login' element={<Home />} />}

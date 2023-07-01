@@ -5,6 +5,7 @@ import Page404 from './Page404';
 import Coming from './Coming';
 import { Loader } from '../components';
 import { useAuth } from '../hooks';
+import Chatbot from '../components/Chatbot';
 
 const Math = React.lazy(() => import("../components/Math"));
 
@@ -54,6 +55,7 @@ const Home = () => {
         <div className='main'>
             <Suspense fallback={<Loader />}>
                 <Math />
+                {/* <Chatbot /> */}
             </Suspense>
         </div>
     )

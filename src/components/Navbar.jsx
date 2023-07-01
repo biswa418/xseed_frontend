@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { IoMenuOutline } from 'react-icons/io5'
+import { IoMenuOutline } from 'react-icons/io5';
+import { BsChevronDown } from 'react-icons/bs';
 import { GrClose } from 'react-icons/gr';
 import { subjects } from '../utils/constants'
 import { Fade, Slide } from 'react-awesome-reveal'
@@ -62,7 +63,7 @@ const Navbar = () => {
             <div className='md:flex items-center hidden'>
                 <>
                     <div onClick={(e) => handleSubChangeMenu(e.target)} className='rounded-full cursor-pointer active px-4 py-2'>
-                        Subjects
+                        Subjects &#187;
                     </div>
 
                     {
@@ -112,9 +113,9 @@ const Navbar = () => {
                 {
                     signedIn &&
                     <>
-                        <div className='uppercase flex justify-center items-center mr-5'>
-                            <img className='h-12 ml-5 mr-2' src='./man.png' alt='display_pic' />
-                            {auth.user?.name}
+                        <div className='uppercase flex justify-center items-center text-slate-600 mr-5'>
+                            <img className='h-12 ml-5 mr-2' src='../man.png' alt='display_pic' />
+                            {auth.user?.name?.split(' ')[0]}
                         </div>
                         <a className='mx-1 whitespace-nowrap cursor-pointer' onClick={(e) => { handleLogout() }}>Sign Out</a>
                     </>
