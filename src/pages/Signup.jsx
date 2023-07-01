@@ -121,7 +121,7 @@ const Signup = () => {
 
                     <div className="separator">
                         <hr className="line" />
-                        <span className='note1'>Already have an account?</span>
+                        <span className='note1 min-w-max'>Already have an account?</span>
                         <hr className="line" />
                     </div>
 
