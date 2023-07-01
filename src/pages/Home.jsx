@@ -41,7 +41,9 @@ const Home = () => {
 
     if (loading) {
         return (
-            <Loader />
+            <div className='main'>
+                <Loader />
+            </div>
         )
     }
 
@@ -52,12 +54,16 @@ const Home = () => {
     }
 
     return (
-        <div className='main'>
+        <div className='min-h-[90vh] mx-auto flex flex-col items-center'>
             <Suspense fallback={
                 <div className='main'>
                     <Loader />
                 </div>
             }>
+
+                <h1 className='text-lg font-medium min-w-max w-full text-center p-4 bg-cyan-700 text-white whitespace-nowrap md:text-3xl'>
+                    Chapter 4 - Addition and Subtraction
+                </h1>
                 <Math />
                 {/* <Chatbot /> */}
             </Suspense>

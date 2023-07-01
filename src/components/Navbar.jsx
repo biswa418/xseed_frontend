@@ -55,7 +55,7 @@ const Navbar = () => {
 
             <a href='/'>
                 <div className='logo flex justify-center items-center'>
-                    <img src='../logo.png' className='w-12' alt='logo' />
+                    <img src='../../logo.png' className='w-12' alt='logo' />
                     <h1 className='hidden md:block text-3xl tracking-tight font-mono font-semibold m-4 text-blue-600'>CreatiV</h1>
                 </div>
             </a>
@@ -114,7 +114,7 @@ const Navbar = () => {
                     signedIn &&
                     <>
                         <div className='uppercase flex justify-center items-center text-slate-600 mr-5'>
-                            <img className='h-12 ml-5 mr-2' src='../man.png' alt='display_pic' />
+                            <img className='h-12 ml-5 mr-2' src='../../man.png' alt='display_pic' />
                             {auth.user?.name?.split(' ')[0]}
                         </div>
                         <a className='mx-1 whitespace-nowrap cursor-pointer' onClick={(e) => { handleLogout() }}>Sign Out</a>
@@ -149,7 +149,7 @@ const Navbar = () => {
                                             signedIn &&
                                             <>
                                                 <div className='uppercase flex justify-center items-center text-white mr-5'>
-                                                    <img className='h-12 ml-5 mr-2' src='../man.png' alt='display_pic' />
+                                                    <img className='h-12 ml-5 mr-2' src='../../man.png' alt='display_pic' />
                                                     {auth.user?.name?.split(' ')[0]}
                                                 </div>
                                                 |
