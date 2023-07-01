@@ -69,18 +69,18 @@ const Navbar = () => {
                     {
                         openSubMenu &&
                         <Fade triggerOnce className='side_menu z-20'>
-                            <div className='flex flex-col items-center bg-opacity-70 bg-slate-300 backdrop-blur-lg rounded-lg text-base absolute right-10 top-16 z-50 w-[92vw] min-h-[50vh] pb-8 h-max'>
-                                <ul className='w-3/4 mt-4'>
+                            <div className='flex flex-col items-center bg-opacity-70 bg-slate-300 backdrop-blur-lg rounded-lg text-base absolute right-10 xl:right-80 top-16 z-50 w-[92vw] xl:w-[70vw] min-h-[50vh] pb-8 h-max'>
+                                <ul className='w-3/4 my-auto'>
                                     {
                                         subjects.map((sub) => {
                                             return (
-                                                <li key={sub.id} value={sub.id} className='my-2 flex flex-col cursor-pointer w-full rounded-md bg-slate-50'>
+                                                <li key={sub.id} value={sub.id} className='my-2 xl:my-5 xl:text-2xl flex flex-col items-center justify-center cursor-pointer w-full rounded-md bg-slate-50'>
                                                     <div direction='right' className='w-full py-2 px-4 hover:text-white hover:bg-slate-400' onClick={(e) => showContent(e.target.nextSibling, e.target)}>
                                                         {sub.name}
                                                     </div>
 
                                                     <Slide direction='right'>
-                                                        <ul className='text-left w-3/4 content'>
+                                                        <ul className='text-left w-11/12 xl:w-full content'>
                                                             {
                                                                 sub.sub.map((eachSub, id) => {
                                                                     return (
