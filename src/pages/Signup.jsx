@@ -55,7 +55,9 @@ const Signup = () => {
 
     if (loading) {
         return (
-            <Loader />
+            <div className='main'>
+                <Loader />
+            </div>
         )
     }
 

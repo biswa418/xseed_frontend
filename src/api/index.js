@@ -1,6 +1,5 @@
 import { API_URLS, LOCALSTORAGE_TOKEN_KEY } from "../utils/api";
 import { getFromLocalStorage, getFormBody } from '../utils';
-import toast from 'react-hot-toast';
 
 const customFetch = async (url, { body, ...customConfig }) => {
     const token = getFromLocalStorage(LOCALSTORAGE_TOKEN_KEY);
@@ -61,9 +60,16 @@ async function signup(name, email, password) {
     });
 }
 
+async function getContent(page) {
+    return await customFetch(API_URLS.posts(page), {
+        method: 'GET',
+    })
+}
+
 
 
 export {
     login,
-    signup
+    signup,
+    getContent
 }

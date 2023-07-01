@@ -11,7 +11,11 @@ function App() {
   const auth = useAuth();
 
   if (auth.loading) {
-    return <Loader />
+    return (
+      <div className='main'>
+        <Loader />
+      </div>
+    )
   }
 
   return (

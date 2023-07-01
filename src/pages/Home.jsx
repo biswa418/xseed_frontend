@@ -53,7 +53,11 @@ const Home = () => {
 
     return (
         <div className='main'>
-            <Suspense fallback={<Loader />}>
+            <Suspense fallback={
+                <div className='main'>
+                    <Loader />
+                </div>
+            }>
                 <Math />
                 {/* <Chatbot /> */}
             </Suspense>

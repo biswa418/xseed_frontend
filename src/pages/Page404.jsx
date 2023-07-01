@@ -11,7 +11,9 @@ const Page404 = () => {
 
     if (loading) {
         return (
-            <Loader />
+            <div className='main'>
+                <Loader />
+            </div>
         )
     }
 

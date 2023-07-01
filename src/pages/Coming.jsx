@@ -1,7 +1,7 @@
 import React, { Suspense, useEffect, useState } from 'react'
 import { Loader } from '../components';
 
-const Soon = React.lazy(() => import("./Soon"));
+const Soon = React.lazy(() => import("../components/Soon"));
 
 const Coming = () => {
     const [loading, setLoading] = useState(true);
@@ -12,7 +12,9 @@ const Coming = () => {
 
     if (loading) {
         return (
-            <Loader />
+            <div className='main'>
+                <Loader />
+            </div>
         )
     }
 
