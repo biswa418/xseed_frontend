@@ -15,7 +15,6 @@ const Home = () => {
     const { name, sub } = useParams();
     const [returnPage, setreturnPage] = useState(2);
     const [bot, showBot] = useState(false);
-    const auth = useAuth();
 
     useEffect(() => {
         let found = subjects.filter((eachTopic) => {
