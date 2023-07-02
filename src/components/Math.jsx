@@ -37,6 +37,7 @@ const Math = () => {
                     section: []
                 }
             }])
+            auth.logout();
             toast.error('Login required to the page.');
         } else if (currentContent.message === 'Invalid request, data not found') {
             setEnd(false);
