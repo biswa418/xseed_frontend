@@ -1,4 +1,4 @@
-const API_ROOT = 'http://localhost:8000';
+const API_ROOT = 'https://xceed-backend.vercel.app';
 
 export const API_URLS = {
     login: () => `${API_ROOT}/signin`,
