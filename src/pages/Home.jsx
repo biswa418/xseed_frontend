@@ -71,7 +71,7 @@ const Home = () => {
                     <Chatbot />
                 }
 
-                <button onClick={() => showBot(!bot)} className='fixed left-2 bottom-2 p-4 z-30 m-2 text-2xl bg-cyan-700 text-white rounded-full'>
+                <button onClick={() => { showBot(!bot) }} className='fixed left-2 bottom-2 p-4 z-30 m-2 text-2xl bg-cyan-700 text-white rounded-full'>
                     <BsRobot />
                 </button>
                 <Math />
