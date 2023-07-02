@@ -63,8 +63,8 @@ const Signup = () => {
 
     return (
         <>
-            <div className='main'>
-                <form className="form_container mt-4 min-w-full md:min-w-max 3xl:min-w-max md:w-1/2 mb-6">
+            <div className='main min-w-max'>
+                <form className="form_container mt-4 min-w-full md:min-w-max md:w-1/3 max-w-[100px] mb-6">
                     <div className="logo_container">
                         <img src='./logo.png' />
                     </div>
